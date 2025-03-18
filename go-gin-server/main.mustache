@@ -1,21 +1,33 @@
-{{>partial_header}}
 package main
 
 import (
 	"log"
+	"os"
 
-	// WARNING!
-	// Pass --git-repo-id and --git-user-id properties when generating the code
-	//
-	sw "{{gitHost}}/{{gitUserId}}/{{gitRepoId}}{{#isGoSubmodule}}/{{packageName}}{{/isGoSubmodule}}/{{apiPath}}"
+	"context"
+	"go_gin_server/{{apiPath}}"
+
+	"github.com/joho/godotenv"
 )
 
+
 func main() {
-	routes := sw.ApiHandleFunctions{}
+	err := godotenv.Load("../.env")
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
 
-	log.Printf("Server started")
+	port := os.Getenv("GIN_SERVER_PORT")
+	if port == "" {
+		port = "8080" // Default port if not specified
+	}
+	openapi.ConnectToDB()
+	routes := openapi.ApiHandleFunctions{}
 
-	router := sw.NewRouter(routes)
+	log.Printf("Server started on port %s", port)
 
-	log.Fatal(router.Run(":{{serverPort}}"))
+	router := openapi.NewRouter(routes)
+
+	log.Fatal(router.Run(":" + port))
+	defer openapi.Db.Close(context.Background())
 }
