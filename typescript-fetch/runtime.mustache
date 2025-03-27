@@ -137,6 +137,10 @@ export class BaseAPI {
             // do not handle correctly sometimes.
             url += '?' + this.configuration.queryParamsStringify(context.query);
         }
+        
+        if (context.rawQuery) {
+            url += (url.includes('?') ? '&' : '?') + context.rawQuery;
+        }
 
         const headers = Object.assign({}, this.configuration.headers, context.headers);
         Object.keys(headers).forEach(key => headers[key] === undefined ? delete headers[key] : {});
@@ -296,6 +300,7 @@ export interface RequestOpts {
     method: HTTPMethod;
     headers: HTTPHeaders;
     query?: HTTPQuery;
+    rawQuery?: string;
     body?: HTTPBody;
 }
 
