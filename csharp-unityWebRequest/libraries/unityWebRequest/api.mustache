@@ -481,17 +481,17 @@ namespace {{packageName}}.{{apiPackage}}
             var httpTask = {{operationId}}WithHttpInfoAsync({{#allParams}}{{paramName}}{{^-last}}, {{/-last}}{{/allParams}}{{#allParams.0}}, {{/allParams.0}}cancellationToken);
             {{#returnType}}
 #if UNITY_EDITOR || !UNITY_WEBGL
-            {{packageName}}.Client.ApiResponse<{{{returnType}}}> localVarResponse = await task.ConfigureAwait(false);
+            {{packageName}}.Client.ApiResponse<{{{returnType}}}> localVarResponse = await httpTask.ConfigureAwait(false);
 #else
-            {{packageName}}.Client.ApiResponse<{{{returnType}}}> localVarResponse = await task;
+            {{packageName}}.Client.ApiResponse<{{{returnType}}}> localVarResponse = await httpTask;
 #endif
             return localVarResponse.Data;
             {{/returnType}}
             {{^returnType}}
 #if UNITY_EDITOR || !UNITY_WEBGL
-            await task.ConfigureAwait(false);
+            await httpTask.ConfigureAwait(false);
 #else
-            await task;
+            await httpTask;
 #endif
             {{/returnType}}
         }
@@ -669,9 +669,9 @@ namespace {{packageName}}.{{apiPackage}}
             var httpTask = this.AsynchronousClient.{{#lambda.titlecase}}{{#lambda.lowercase}}{{httpMethod}}{{/lambda.lowercase}}{{/lambda.titlecase}}Async<{{{returnType}}}{{^returnType}}Object{{/returnType}}>("{{{path}}}", localVarRequestOptions, this.Configuration, cancellationToken);
 
 #if UNITY_EDITOR || !UNITY_WEBGL
-            var localVarResponse = await task.ConfigureAwait(false);
+            var localVarResponse = await httpTask.ConfigureAwait(false);
 #else
-            var localVarResponse = await task;
+            var localVarResponse = await httpTask;
 #endif
 
             if (this.ExceptionFactory != null)
