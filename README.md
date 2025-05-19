@@ -9,6 +9,7 @@ OpenAPI Generator Templates
 `openapi-generator author template -g <generator> -o <outputDir> [--library <library>]`  
 
 Command to generate a template for a specific generator:  
+`openapi-generator author template -g dart -o dart`
 `openapi-generator author template -g typescript-fetch -o typescript-fetch`   
 `openapi-generator author template -g go-gin-server -o go-gin-server`  
 `openapi-generator author template -g csharp -o csharp-unityWebRequest --library unityWebRequest`
