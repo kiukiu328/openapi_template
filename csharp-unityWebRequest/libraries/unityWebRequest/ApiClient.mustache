@@ -41,7 +41,8 @@ namespace {{packageName}}.Client
                 {
                     OverrideSpecifiedNames = false
                 }
-            }
+            },
+            NullValueHandling = NullValueHandling.Ignore,
         };
 
         public CustomJsonCodec(IReadableConfiguration configuration)
@@ -184,7 +185,8 @@ namespace {{packageName}}.Client
                 {
                     OverrideSpecifiedNames = false
                 }
-            }
+            },
+            NullValueHandling = NullValueHandling.Ignore,
         };
 
         /// <summary>
