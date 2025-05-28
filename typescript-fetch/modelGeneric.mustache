@@ -256,7 +256,7 @@ export const {{classname}}AdditionalPropertiesValidationAttributes: { maxPropert
 export function Default{{classname}}(): {{classname}} {
     return {
         {{#vars}}
-        {{name}}: {{#isPrimitiveType}}{{#isNumeric}}-1{{/isNumeric}}{{#isString}}''{{/isString}}{{#isBoolean}}false{{/isBoolean}}{{#isDateType}}new Date(){{/isDateType}}{{#isDateTimeType}}new Date(){{/isDateTimeType}}{{/isPrimitiveType}}{{^isPrimitiveType}}{{{datatype}}}{{/isPrimitiveType}},
+        {{name}}: {{#isPrimitiveType}}{{#isNumeric}}-1{{/isNumeric}}{{#isString}}''{{/isString}}{{#isBoolean}}false{{/isBoolean}}{{#isDateType}}new Date(){{/isDateType}}{{#isDateTimeType}}new Date(){{/isDateTimeType}}{{#isArray}}[]{{/isArray}}{{/isPrimitiveType}}{{^isPrimitiveType}}{{{datatype}}}{{/isPrimitiveType}},
         {{/vars}}
     };
 }
