@@ -385,7 +385,7 @@ export class {{classname}} extends runtime.BaseAPI {
         {{/isResponseOptional}}
         {{/returnType}}
         {{^returnType}}
-        return (await this.{{nickname}}Raw({{#allParams.0}}{ {{#allParams}}{{paramName}}: {{paramName}}{{^-last}}, {{/-last}}{{/allParams}} }, {{/allParams.0}}initOverrides)).value();
+        return (await this.{{nickname}}Raw({{#allParams.0}}{ {{#allParams}}{{paramName}}: {{paramName}}{{^-last}}, {{/-last}}{{/allParams}} }, {{/allParams.0}}initOverrides)).value().catch(() => { });
         {{/returnType}}
     }
     {{/useSingleRequestParameter}}
@@ -410,7 +410,7 @@ export class {{classname}} extends runtime.BaseAPI {
         {{/isResponseOptional}}
         {{/returnType}}
         {{^returnType}}
-        return (await this.{{nickname}}Raw({{#allParams.0}}requestParameters, {{/allParams.0}}initOverrides)).value();
+        return (await this.{{nickname}}Raw({{#allParams.0}}requestParameters, {{/allParams.0}}initOverrides)).value().catch(() => { });
         {{/returnType}}
     }
     {{/useSingleRequestParameter}}
