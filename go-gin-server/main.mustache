@@ -2,31 +2,15 @@ package main
 
 import (
 	"log"
-	"os"
-
-	"go_gin_server/{{apiPath}}"
-
-	"github.com/joho/godotenv"
+	"go_gin_server/go"
 )
 
-
 func main() {
-	err := godotenv.Load("../.env")
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	port := os.Getenv("GIN_SERVER_PORT")
-	if port == "" {
-		port = "8080" // Default port if not specified
-	}
-	openapi.ConnectToDB()
 	routes := openapi.ApiHandleFunctions{}
 
-	log.Printf("Server started on port %s", port)
+	log.Printf("Server started")
 
 	router := openapi.NewRouter(routes)
 
-	log.Fatal(router.Run(":" + port))
-	defer openapi.Db.Close()
+	log.Fatal(router.Run(":8080"))
 }

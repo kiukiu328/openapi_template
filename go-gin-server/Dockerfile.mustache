@@ -1,10 +1,10 @@
-FROM golang:1.24 AS build
+FROM golang:1.26 AS build
 WORKDIR /go/src
 COPY {{apiPath}} ./{{apiPath}}
 COPY main.go .
 COPY go.sum .
 COPY go.mod .
-COPY .env .env
+COPY .en[v] .env
 RUN echo "\n\nIS_BUILD=true" >> .env
 
 ENV CGO_ENABLED=0
