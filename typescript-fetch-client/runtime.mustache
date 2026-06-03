@@ -126,8 +126,20 @@ export class BaseAPI {
         if (response && (response.status >= 200 && response.status < 300)) {
             return response;
         }
-        throw new ResponseError(response, 'Response returned an error code');
+       
+        let responseBody: string = '';
+        let parsedBody: ResponseErrorBody | undefined;
+
+        try {
+            responseBody = await response.text();
+            parsedBody = JSON.parse(responseBody);
+        } catch {
+            // Ignore JSON parse errors, use raw text as message
+        }
+
+        throw new ResponseError(response, responseBody || 'Response returned an error code', parsedBody);
     }
+
 
     private async createFetchParams(context: RequestOpts, initOverrides?: RequestInit | InitOverrideFunction) {
         let url = this.configuration.basePath + context.path;
@@ -250,10 +262,19 @@ function isFormData(value: any): value is FormData {
     return typeof FormData !== "undefined" && value instanceof FormData;
 }
 
+export interface ResponseErrorBody {
+    code?: string;
+    details?: string;
+    hint?: string;
+    message?: string;
+}
+
 export class ResponseError extends Error {
     override name: "ResponseError" = "ResponseError";
-    constructor(public response: Response, msg?: string) {
+    body?: ResponseErrorBody;
+    constructor(public response: Response, msg?: string, body?: ResponseErrorBody) {
         super(msg);
+        this.body = body;
     }
 }
 

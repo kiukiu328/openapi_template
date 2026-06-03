@@ -47,7 +47,7 @@
         */
         {{/example}}
         {{^conditionalSerialization}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
@@ -66,7 +66,7 @@
         {{/conditionalSerialization}}
         {{#conditionalSerialization}}
         {{#isReadOnly}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
@@ -84,7 +84,7 @@
         {{/isReadOnly}}
 
         {{^isReadOnly}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
@@ -138,7 +138,7 @@
     {{#hasOnlyReadOnly}}
         [JsonConstructorAttribute]
     {{/hasOnlyReadOnly}}
-        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}{{#isEnum}}{{^isContainer}}{{^required}}?{{/required}}{{/isContainer}}{{/isEnum}} {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{#defaultValue}}{{^isDateTime}}{{#isString}}{{^isEnum}}@{{/isEnum}}{{/isString}}{{{defaultValue}}}{{/isDateTime}}{{#isDateTime}}default{{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default{{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
+        public {{classname}}({{#readWriteVars}}{{{datatypeWithEnum}}}? {{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}} = {{#defaultValue}}{{^isDateTime}}{{#isString}}{{^isEnum}}@{{/isEnum}}{{/isString}}{{{defaultValue}}}{{/isDateTime}}{{#isDateTime}}default{{/isDateTime}}{{/defaultValue}}{{^defaultValue}}default{{/defaultValue}}{{^-last}}, {{/-last}}{{/readWriteVars}}){{#parent}} : base({{#parentVars}}{{#lambda.camelcase_sanitize_param}}{{name}}{{/lambda.camelcase_sanitize_param}}{{^-last}}, {{/-last}}{{/parentVars}}){{/parent}}
         {
             {{#vars}}
             {{^isInherited}}
@@ -223,7 +223,7 @@
         */
         {{/example}}
         {{^conditionalSerialization}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#isDate}}
         {{^supportsDateOnly}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
@@ -232,7 +232,7 @@
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
-        public {{{dataType}}} {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
+        public {{{dataType}}}? {{name}} { get; {{#isReadOnly}}private {{/isReadOnly}}set; }
 
         {{#isReadOnly}}
         /// <summary>
@@ -247,14 +247,14 @@
         {{/conditionalSerialization}}
         {{#conditionalSerialization}}
         {{#isReadOnly}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#isDate}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
         {{/isDate}}
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
-        public {{{dataType}}} {{name}} { get; private set; }
+        public {{{dataType}}}? {{name}} { get; private set; }
 
         /// <summary>
         /// Returns false as {{name}} should not be serialized given that it's read-only.
@@ -269,11 +269,11 @@
         {{#isDate}}
         [JsonConverter(typeof(OpenAPIDateConverter))]
         {{/isDate}}
-        [DataMember(Name = "{{baseName}}"{{#required}}, IsRequired = true{{/required}}, EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
+        [DataMember(Name = "{{baseName}}", EmitDefaultValue = {{#vendorExtensions.x-emit-default-value}}true{{/vendorExtensions.x-emit-default-value}}{{^vendorExtensions.x-emit-default-value}}{{#required}}true{{/required}}{{^required}}{{#isBoolean}}true{{/isBoolean}}{{^isBoolean}}{{#isNullable}}true{{/isNullable}}{{^isNullable}}false{{/isNullable}}{{/isBoolean}}{{/required}}{{/vendorExtensions.x-emit-default-value}})]
         {{#deprecated}}
         [Obsolete]
         {{/deprecated}}
-        public {{{dataType}}} {{name}}
+        public {{{dataType}}}? {{name}}
         {
             get{ return _{{name}};}
             set
@@ -282,7 +282,7 @@
                 _flag{{name}} = true;
             }
         }
-        private {{{dataType}}} _{{name}};
+        private {{{dataType}}}? _{{name}};
         private bool _flag{{name}};
 
         /// <summary>

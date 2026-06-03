@@ -4,7 +4,6 @@ import (
 	"log"
 	"os"
 
-	"context"
 	"go_gin_server/{{apiPath}}"
 
 	"github.com/joho/godotenv"
@@ -29,5 +28,5 @@ func main() {
 	router := openapi.NewRouter(routes)
 
 	log.Fatal(router.Run(":" + port))
-	defer openapi.Db.Close(context.Background())
+	defer openapi.Db.Close()
 }
