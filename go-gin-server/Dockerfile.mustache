@@ -16,6 +16,7 @@ ENV GIN_MODE=release
 COPY --from=build /go/src/{{packageName}} ./
 COPY --from=build /go/src/.env ./
 COPY ./api/openapi.yaml ./api/openapi.yaml
+COPY sr[c] ./src
 
 EXPOSE 8080/tcp
 ENTRYPOINT ["./{{packageName}}"]
