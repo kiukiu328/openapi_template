@@ -4,7 +4,7 @@ COPY {{apiPath}} ./{{apiPath}}
 COPY main.go .
 COPY go.sum .
 COPY go.mod .
-COPY .en[v] .env
+COPY --from=env_file .env ./.env
 RUN echo "\n\nIS_BUILD=true" >> .env
 
 ENV CGO_ENABLED=0
