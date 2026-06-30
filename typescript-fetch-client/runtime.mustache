@@ -2,7 +2,7 @@
 /* eslint-disable */
 {{>licenseInfo}}
 
-export const BASE_PATH = "{{{basePath}}}".replace(/\/+$/, "");
+export const BASE_PATH = "{{#customBasePath}}{{{customBasePath}}}{{/customBasePath}}{{^customBasePath}}{{{basePath}}}{{/customBasePath}}".replace(/\/+$/, "");
 
 export interface ConfigurationParameters {
     basePath?: string; // override base path
